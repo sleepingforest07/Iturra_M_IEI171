@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Listado de Miembros</title>
+</head>
+
+<body class="container mt-5" style="background-color: #37818A;">
+    <div class="alert alert-info display-1 text-center">Miembros de Los Campeones</div>
+
+    <a href="/agregar" class="btn btn-success">Unirse A Los Campeones</a>
+
+    {% if Socios %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Fecha Incorporacion</th>
+                    <th>Fecha nacimiento</th>
+                    <th>Telefono</th>
+                    <th>Correo Electronico</th>
+                    <th>Sexo</th>
+                    <th>estado</th>
+                    <th>observacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for socio in Socios %}
+                <tr>
+                    <td>{{ socio.id }}</td>
+                    <td>{{ socio.Nombre_Socio }}</td>
+                    <td>{{ socio.Fecha_Incorporacion }}</td>
+                    <td>{{ socio.Fecha_nacimiento }}</td>
+                    <td>{{ socio.Telefono }}</td>
+                    <td>{{ socio.Correo_Electronico }}</td>
+                    <td>{{ socio.Sexo }}</td>
+                    <td>{{ socio.estado }}</td>
+                    <td>{{ socio.observacion }}</td>
+                    <td>
+                        
+                        <a href="{% url 'editar_socio' socio.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        
+                        <a href="{% url 'eliminar_socio' socio.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    
+    {% else %}
+        <div class=" container mt-3 mb-3 text-center" style="background-color: bisque;";>No se encuetran Socios en el Club</div>
+    {% endif %}
+    
+
+    <a href="/" class="btn btn-dark m-5"><i class="bi bi-arrow-left-short"></i>volver</a>
+</body>
+
+</html>
